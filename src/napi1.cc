@@ -1,9 +1,18 @@
 #include <napi.h>
+#include <iostream>
+#include <fstream>
 
 using namespace Napi;
 
+std::ofstream myfile;
+
 Napi::String Method(const Napi::CallbackInfo& info) {
   Napi::Env env = info.Env();
+
+  // Open a file, and don't close it
+  myfile.open ("C:/Users/mfrederiksen/Desktop/example.txt");
+  myfile << "Writing this to a file.\n";
+
   return Napi::String::New(env, "world");
 }
 
